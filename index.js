@@ -93,11 +93,11 @@ app.get('/balance_of/:principalIdText', async (req, res) => {
     }
 });
 
-app.post('/claim_token', async (req, res) => {
-    const { body } = req;
+app.get('/claim_token/:myPrincipalIdText/:key', async (req, res) => {
     try {
-        const myPrincipalIdText = body.principalIdText;
-        const key = body.key;
+        const { myPrincipalIdText, key } = req.params;
+        // const myPrincipalIdText = body.principalIdText;
+        // const key = body.key;
 
         // Panggil metode pada canister 
         const result = await canister.claim_token(myPrincipalIdText, key);
